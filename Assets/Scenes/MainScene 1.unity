@@ -11105,7 +11105,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1233415271, guid: 05d54b3380ce3414fb75a08063f8dfb2, type: 3}
+  m_Sprite: {fileID: -871925704, guid: ff9bc8b581bc2544786dd1b2151c7503, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -21056,10 +21056,10 @@ MonoBehaviour:
     Sprite: {fileID: -2091794804, guid: 0eafca78410b7f942976b052bbc13e14, type: 3}
   - CharacterName: Heroe
     Text: Como estas
-    Sprite: {fileID: -1233415271, guid: 05d54b3380ce3414fb75a08063f8dfb2, type: 3}
+    Sprite: {fileID: -871925704, guid: ff9bc8b581bc2544786dd1b2151c7503, type: 3}
   - CharacterName: Heroe
     Text: Fin.
-    Sprite: {fileID: -1233415271, guid: 05d54b3380ce3414fb75a08063f8dfb2, type: 3}
+    Sprite: {fileID: -871925704, guid: ff9bc8b581bc2544786dd1b2151c7503, type: 3}
 --- !u!4 &1246077271 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 344060944740020910, guid: 03eb22529d3fd4f878918cfe7a1e3b03, type: 3}
@@ -21392,6 +21392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hand: {fileID: 1262780533}
   shotgun: {fileID: 1566846402}
+  playerMovement: {fileID: 1264462468}
 --- !u!212 &1264462471
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
     public float delay = 0.3f;
     private bool attackBlocked;
 
+    //false si es modo hand y true si es modo shotgun
+    private bool attackMode;
+
 
 
     private void Awake() 
@@ -34,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         DialogueManager.Instance.OnDialogueStart += OnDialogueStartDelegate;
         DialogueManager.Instance.OnDialogueFinish += OnDialogueFinishDelegate;
         animator.SetBool("IsAttacking", false);
+        attackMode = false;
         
     }
 
@@ -100,21 +104,30 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnAttack()
     {
-        Debug.Log("waaaa");
-        animator.SetBool("IsAttacking", true);
-        if (attackBlocked)
+        //If modo hand
+        if (!attackMode)
         {
-            return;
+            animator.SetBool("IsHandAttacking", true);
+            if (attackBlocked)
+            {
+                return;
+            }
+            attackBlocked=true;
+            StartCoroutine(DelayHandAttack());
         }
-        attackBlocked=true;
-        StartCoroutine(DelayAttack());
+        
     }
 
-    private IEnumerator DelayAttack()
+    private IEnumerator DelayHandAttack()
     {
         yield return new WaitForSeconds(delay);
         attackBlocked = false;
-        animator.SetBool("IsAttacking", false);
+        animator.SetBool("IsHandAttacking", false);
+    }
+
+    public void UpdateAttackMode(bool newAttackMode)
+    {
+        attackMode = newAttackMode;
     }
     
 

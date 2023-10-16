@@ -9,6 +9,8 @@ public class PlayerAttackManager : MonoBehaviour
     public GameObject shotgun;
     private bool isHandActive = true;
     private PlayerInput playerInput;
+    public PlayerMovement playerMovement;
+
 
     private void Awake()
     {
@@ -34,5 +36,13 @@ public class PlayerAttackManager : MonoBehaviour
         // Activa o desactiva los elementos según el estado actual
         hand.SetActive(isHandActive);
         shotgun.SetActive(!isHandActive);
+
+        if (!isHandActive)
+        {
+            // Actualizar la variable attackMode de PlayerMovement
+            playerMovement.UpdateAttackMode(true); // Donde playerMovementScript es una referencia al script PlayerMovement
+        }else{
+            playerMovement.UpdateAttackMode(false);
+        }
     }
 }
