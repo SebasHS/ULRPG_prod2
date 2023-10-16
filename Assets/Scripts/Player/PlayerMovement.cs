@@ -15,17 +15,26 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 moveDir;
 
+
+    public float delay = 0.3f;
+    private bool attackBlocked;
+
+
+
     private void Awake() 
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         playerInput = GetComponent<PlayerInput>();
+        
     }
 
     private void Start() 
     {
         DialogueManager.Instance.OnDialogueStart += OnDialogueStartDelegate;
         DialogueManager.Instance.OnDialogueFinish += OnDialogueFinishDelegate;
+        animator.SetBool("IsAttacking", false);
+        
     }
 
     private void Update() 
@@ -36,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity.y,
             moveDir.y * Speed.z
         );
+
+
     }
 
     public void OnDialogueStartDelegate(Interaction interaction)
@@ -75,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
     private void OnCollisionEnter(Collision other) 
     {
         Dialogue dialogue = other.collider.transform.GetComponent<Dialogue>();
@@ -84,5 +96,26 @@ public class PlayerMovement : MonoBehaviour
             DialogueManager.Instance.StartDialogue(dialogue);
         }
     }
+
+
+    public void OnAttack()
+    {
+        Debug.Log("waaaa");
+        animator.SetBool("IsAttacking", true);
+        if (attackBlocked)
+        {
+            return;
+        }
+        attackBlocked=true;
+        StartCoroutine(DelayAttack());
+    }
+
+    private IEnumerator DelayAttack()
+    {
+        yield return new WaitForSeconds(delay);
+        attackBlocked = false;
+        animator.SetBool("IsAttacking", false);
+    }
+    
 
 }

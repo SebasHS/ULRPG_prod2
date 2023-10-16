@@ -14,6 +14,8 @@ public class DialogueUI : MonoBehaviour
     [SerializeField]
     private Transform characterName;
 
+    public GameObject weaponUI;
+
     private void Start() 
     {
         DialogueManager.Instance.OnDialogueStart += OnDialogueStartDelegate;
@@ -29,6 +31,7 @@ public class DialogueUI : MonoBehaviour
         if (interaction != null)
         {
             gameObject.SetActive(true);
+            weaponUI.SetActive(false);
             ShowInteraction(interaction);
         }
     }
@@ -44,6 +47,7 @@ public class DialogueUI : MonoBehaviour
     private void OnDialogueFinishDelegate()
     {
         gameObject.SetActive(false);
+        weaponUI.SetActive(true);
     }
 
     private void ShowInteraction(Interaction interaction)
