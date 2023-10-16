@@ -1,4 +1,4 @@
-using System;
+    using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
     private Vector3 Speed = new Vector3(4f, 0f, 4f);
+    [SerializeField]
+    private float jumpForce = 5.0f;
 
     private Rigidbody rb;
     private Animator animator;
@@ -49,7 +51,10 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity.y,
             moveDir.y * Speed.z
         );
-
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
+        }
 
     }
 
@@ -129,6 +134,18 @@ public class PlayerMovement : MonoBehaviour
     {
         attackMode = newAttackMode;
     }
-    
 
+
+    void Jump()
+    {
+        if (IsGrounded())
+        {
+            rb.velocity = new Vector3(0, jumpForce, 0);
+        }
+    }
+    bool IsGrounded()
+    {
+        // Verificar si el objeto está en contacto con el suelo
+        return Physics.Raycast(transform.position, Vector3.down, 0.1f);
+    }
 }
