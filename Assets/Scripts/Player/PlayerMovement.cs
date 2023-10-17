@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveDir;
 
 
-    public float delay = 0.3f;
+    public float delay = 0.1f;
     private bool attackBlocked;
 
     //false si es modo hand y true si es modo shotgun
@@ -112,15 +112,43 @@ public class PlayerMovement : MonoBehaviour
         //If modo hand
         if (!attackMode)
         {
-            animator.SetBool("IsHandAttacking", true);
-            if (attackBlocked)
-            {
-                return;
-            }
-            attackBlocked=true;
-            StartCoroutine(DelayHandAttack());
+            OnHandAttack();
         }
+        //else //If modo shotgun
+        //{
+
+        //}
         
+    }
+
+    private void OnHandAttack()
+    {
+        float handDamageAmount = 1f;
+        animator.SetBool("IsHandAttacking", true);
+        if (attackBlocked)
+        {
+            return;
+        }
+        attackBlocked=true;
+        StartCoroutine(DelayHandAttack());
+        //danio cuando colisiona
+
+        // Detecta las colisiones con objetos etiquetados como "Enemy" durante el ataque.
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 2f); // Ajusta el radio según tus necesidades.
+
+        foreach (Collider hitCollider in hitColliders)
+        {
+            if (hitCollider.CompareTag("Enemy"))
+            {
+                // Acción para dañar al enemigo.
+                EnemyHealth enemyHealth = hitCollider.GetComponent<EnemyHealth>();
+                if (enemyHealth != null)
+                {
+                    enemyHealth.Damage(handDamageAmount); // Reemplaza "tuCantidadDeDaño" por el valor adecuado.
+                }
+            }
+        }
+
     }
 
     private IEnumerator DelayHandAttack()
