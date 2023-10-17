@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     {
         DialogueManager.Instance.OnDialogueStart += OnDialogueStartDelegate;
         DialogueManager.Instance.OnDialogueFinish += OnDialogueFinishDelegate;
-        animator.SetBool("IsAttacking", false);
+        animator.SetBool("IsHandAttacking", false);
         attackMode = false;
         
     }
