@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private PlayerInput playerInput;
 
-    private Vector2 moveDir;
+    private Vector3 moveDir;
 
 
     public float delay = 0.1f;
@@ -24,6 +24,10 @@ public class PlayerMovement : MonoBehaviour
     //false si es modo hand y true si es modo shotgun
     private bool attackMode;
 
+
+    public GameObject bulletPrefab;
+    public Transform firePoint; // Este es el punto desde donde se dispara el proyectil.
+    private Vector3 bulletDirection;
 
 
     private void Awake() 
@@ -46,11 +50,13 @@ public class PlayerMovement : MonoBehaviour
     private void Update() 
     {
         moveDir.Normalize();
+        
         rb.velocity = new Vector3(
             moveDir.x * Speed.x,
             rb.velocity.y,
             moveDir.y * Speed.z
         );
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
@@ -83,6 +89,14 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("IsWalking", false);
         }
+        if(moveDir.x != 0 || moveDir.y != 0)
+        {
+            bulletDirection = new Vector3(moveDir.x, 0, moveDir.y);
+        
+        }
+
+       
+        //bulletDirection = new Vector2(moveDir.x*2, moveDir.y*2);
         
     }
 
@@ -114,11 +128,29 @@ public class PlayerMovement : MonoBehaviour
         {
             OnHandAttack();
         }
-        //else //If modo shotgun
-        //{
-
-        //}
+        else //If modo shotgun
+        {
+            OnShotgunAttack();
+        }
         
+    }
+
+    private void OnShotgunAttack()
+    {
+        // Crea el proyectil en la posición del firePoint y la dirección en la que el jugador está mirando.
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position + new Vector3(0, 0.314f, 0), transform.rotation);
+
+        // Actualiza el parámetro del animator del objeto bulletPrefab
+        Animator bulletAnimator = bullet.GetComponent<Animator>();
+        
+        if (bulletDirection.z != 0)
+        {
+            bullet.transform.Rotate(new Vector3(0, 0, 90));
+        }    
+        bullet.GetComponent<Rigidbody>().AddForce(bulletDirection * 700f);
+
+        // Destruye el proyectil después de un tiempo o cuando colisiona con algo.
+        Destroy(bullet, 2f); // Cambia 2f por la duración deseada del proyectil.
     }
 
     private void OnHandAttack()
@@ -138,7 +170,7 @@ public class PlayerMovement : MonoBehaviour
 
         foreach (Collider hitCollider in hitColliders)
         {
-            if (hitCollider.CompareTag("Enemy"))
+            if (hitCollider.CompareTag("Boss"))
             {
                 // Acción para dañar al enemigo.
                 EnemyHealth enemyHealth = hitCollider.GetComponent<EnemyHealth>();
@@ -161,6 +193,7 @@ public class PlayerMovement : MonoBehaviour
     public void UpdateAttackMode(bool newAttackMode)
     {
         attackMode = newAttackMode;
+        animator.SetBool("IsShotgunMode", newAttackMode);
     }
 
 
