@@ -41,7 +41,7 @@ public class AttackStateBoss : StateBoss
         timer += Time.deltaTime;
         if (timer > controller.CoolDownTime)
         {
-            //controller.Fire();
+            controller.Fire();
             Debug.Log("FIRE????");
             timer = 0f;
         }

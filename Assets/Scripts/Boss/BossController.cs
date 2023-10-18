@@ -13,10 +13,10 @@ public class BossController : MonoBehaviour
 
     #region Parameters
     public  Transform Player;
-    public float DistanceToFollow = 4f;
+    public float DistanceToFollow = 7f;
     public float DistanceToAttack = 3f;
     public float Speed = 1f;
-    public GameObject prefabStone;
+    public GameObject prefabRasho;
     public Transform FirePoint;
     public float CoolDownTime = 1.0f;
     #endregion
@@ -62,12 +62,13 @@ public class BossController : MonoBehaviour
 
     }
 
-    /*public void Fire()
+    public void Fire()
     {
-        GameObject stone = Instantiate(prefabStone, FirePoint.position, Quaternion.identity);
-        stone.GetComponent<StoneMovement>().Direction =
+        GameObject rasho = Instantiate(prefabRasho, FirePoint.position, Quaternion.identity);
+        rasho.GetComponent<Rasho>().Direction =
             Player.position - transform.position;
-    }*/
+        Debug.Log("El Rasho");
+    }
 
     /*public void Attack()
     {

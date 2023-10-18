@@ -147,6 +147,15 @@ public class PlayerMovement : MonoBehaviour
                     enemyHealth.Damage(handDamageAmount); // Reemplaza "tuCantidadDeDaño" por el valor adecuado.
                 }
             }
+            else if (hitCollider.CompareTag("Boss"))
+            {
+                // Acción para dañar al boss.
+                BossHealth BossHealth = hitCollider.GetComponent<BossHealth>();
+                if (BossHealth != null)
+                {
+                    BossHealth.Damage(handDamageAmount); // Reemplaza "tuCantidadDeDaño" por el valor adecuado.
+                }
+            }
         }
 
     }
