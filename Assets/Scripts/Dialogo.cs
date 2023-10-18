@@ -11,6 +11,7 @@ public class Dialogo : MonoBehaviour
     private bool isPlayerInRange;
     private bool didDialogueStart;
     private int lineIndex;
+    public GameObject weaponUI;
 
     private float typingTime = 0.05f;
     private void Start()
@@ -41,6 +42,7 @@ public class Dialogo : MonoBehaviour
     {
         didDialogueStart = true;
         dialoguePanel.SetActive(true);
+        weaponUI.SetActive(false);
         lineIndex = 0;
         Time.timeScale = 0f;
         StartCoroutine(ShowLine());
@@ -57,6 +59,7 @@ public class Dialogo : MonoBehaviour
         {
             didDialogueStart = false;
             dialoguePanel.SetActive(false);
+            weaponUI.SetActive(true);
             Time.timeScale = 1f;
         }
     }

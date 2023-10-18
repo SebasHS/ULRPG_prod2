@@ -50,7 +50,7 @@ public class Rasho : MonoBehaviour
         if(other.collider.name == "Player")
         {
             Debug.Log("Rayasho");
-            PlayerHealth.Instance.TakeDamage(5f);
+            PlayerHealth.Instance.TakeDamage(10f);
             StoneDestroy();
         }
     }

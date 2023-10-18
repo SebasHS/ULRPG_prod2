@@ -35,8 +35,8 @@ public class BossHealth : MonoBehaviour
 
         void Die()
         {
-            BossController.Instance.BossDies();
-            //Destroy(gameObject);
+            //BossController.Instance.BossDies();
+            Destroy(gameObject);
         }
     }
 
