@@ -46,7 +46,7 @@ public class Rasho : MonoBehaviour
     {
         // Hay una colision
         // TODO: Falta hacerle danho al jugador
-        Debug.Log(other.collider.name);
+        //Debug.Log(other.collider.name);
         if(other.collider.name == "Player")
         {
             Debug.Log("Rayasho");

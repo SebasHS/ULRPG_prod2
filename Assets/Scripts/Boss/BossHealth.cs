@@ -25,16 +25,18 @@ public class BossHealth : MonoBehaviour
     public void Damage(float damageAmount)
     {
         currentHealth -= damageAmount;
-        Debug.Log(currentHealth);
+        //Debug.Log(currentHealth);
         slider.value = currentHealth; 
         if (currentHealth <= 0)
         {
             Die();
 
         }
+
         void Die()
         {
-            Destroy(gameObject);
+            BossController.Instance.BossDies();
+            //Destroy(gameObject);
         }
     }
 
