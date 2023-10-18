@@ -174,6 +174,6 @@ public class PlayerMovement : MonoBehaviour
     bool IsGrounded()
     {
         // Verificar si el objeto está en contacto con el suelo
-        return Physics.Raycast(transform.position, Vector3.down, 0.1f);
+        return Physics.Raycast(transform.position, Vector3.down, 0.5f);
     }
 }
