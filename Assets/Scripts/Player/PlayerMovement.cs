@@ -14,17 +14,12 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private Animator animator;
     private PlayerInput playerInput;
-
     private Vector3 moveDir;
-
-
     public float delay = 0.1f;
     private bool attackBlocked;
 
     //false si es modo hand y true si es modo shotgun
     private bool attackMode;
-
-
     public GameObject bulletPrefab;
     public Transform firePoint; // Este es el punto desde donde se dispara el proyectil.
     private Vector3 bulletDirection;
@@ -151,11 +146,13 @@ public class PlayerMovement : MonoBehaviour
 
         // Destruye el proyectil después de un tiempo o cuando colisiona con algo.
         Destroy(bullet, 2f); // Cambia 2f por la duración deseada del proyectil.
+
+
     }
 
     private void OnHandAttack()
     {
-        float handDamageAmount = 1f;
+        float handDamageAmount = 5f;
         animator.SetBool("IsHandAttacking", true);
         if (attackBlocked)
         {
@@ -166,11 +163,11 @@ public class PlayerMovement : MonoBehaviour
         //danio cuando colisiona
 
         // Detecta las colisiones con objetos etiquetados como "Enemy" durante el ataque.
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 2f); // Ajusta el radio según tus necesidades.
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 0.5f); // Ajusta el radio según tus necesidades.
 
         foreach (Collider hitCollider in hitColliders)
         {
-            if (hitCollider.CompareTag("Boss"))
+            if (hitCollider.CompareTag("Enemy"))
             {
                 // Acción para dañar al enemigo.
                 EnemyHealth enemyHealth = hitCollider.GetComponent<EnemyHealth>();

@@ -37,4 +37,12 @@ public class BossHealth : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            Damage(1f);
+        }
+    }
 }

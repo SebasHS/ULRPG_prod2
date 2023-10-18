@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3697271330423654276}
   - component: {fileID: 4436551479111838106}
   - component: {fileID: 5343973708003232550}
+  - component: {fileID: -4971672517720764047}
   m_Layer: 0
   m_Name: bulletPrefab
   m_TagString: Bullet
@@ -111,7 +112,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 4
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!95 &5343973708003232550
 Animator:
@@ -134,3 +135,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!135 &-4971672517720764047
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5016167352670017076}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.061212525
+  m_Center: {x: 0, y: 0, z: 0.03878747}
