@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FollowStateBoss : StateBoss
 {
+
+    //public BossController bossController;
     public FollowStateBoss(BossController controller) : base(controller)
     {
         // Transicion Follow -> Idle
@@ -53,6 +55,7 @@ public class FollowStateBoss : StateBoss
     public override void OnStart()
     {
         Debug.Log("Estado Follow Boss: Start");
+        //bossController.UpdateFollowMode();
     }
 
     public override void OnUpdate()
@@ -64,6 +67,8 @@ public class FollowStateBoss : StateBoss
         controller.animator.SetFloat("Horizontal", dir.x);
         controller.animator.SetFloat("Vertical", dir.z);
         controller.rb.velocity = dir * controller.Speed;
+        controller.animator.SetBool("IsWalking", true);
+        controller.animator.SetBool("IsAttacking", false);
 
     }
     public override void OnFinish()

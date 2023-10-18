@@ -266,7 +266,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2348408038159855077, guid: 666240b3d6eac1c40bd8aa59473e9cde, type: 3}
   m_PrefabInstance: {fileID: 1399670606}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1196482392}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
@@ -13112,7 +13112,7 @@ GameObject:
   - component: {fileID: 768343372}
   - component: {fileID: 768343371}
   - component: {fileID: 768343370}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20823,6 +20823,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 344060944740020910, guid: 03eb22529d3fd4f878918cfe7a1e3b03, type: 3}
   m_PrefabInstance: {fileID: 809436430}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1196482392 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5116762245713353460, guid: 666240b3d6eac1c40bd8aa59473e9cde, type: 3}
+  m_PrefabInstance: {fileID: 1399670606}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1199079882 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 344060944740020910, guid: 03eb22529d3fd4f878918cfe7a1e3b03, type: 3}
@@ -21389,7 +21394,7 @@ GameObject:
   - component: {fileID: 1264462467}
   - component: {fileID: 1264462469}
   - component: {fileID: 1264462471}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -23952,7 +23957,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 25
-  HealthBarBoss: {fileID: 0}
+  HealthBarBoss: {fileID: 1196482392}
   slider: {fileID: 1654585}
 --- !u!114 &1396060306
 MonoBehaviour:
@@ -32191,7 +32196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1843910997}
   - component: {fileID: 1843910998}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

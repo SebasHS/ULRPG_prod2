@@ -64,12 +64,30 @@ public class BossController : MonoBehaviour
 
     public void Fire()
     {
+        UpdateAttackMode();
         GameObject rasho = Instantiate(prefabRasho, FirePoint.position, Quaternion.identity);
         rasho.GetComponent<Rasho>().Direction =
             Player.position - transform.position;
         Debug.Log("El Rasho");
     }
 
+    public void UpdateAttackMode()
+    {
+        animator.SetBool("IsAttacking", true);
+        animator.SetBool("IsWalking", false);
+    }
+
+    public void UpdateFollowMode()
+    {
+        animator.SetBool("isWalking", true);
+        animator.SetBool("isAttacking", false);
+    }
+
+    public void UpdateIdleMode()
+    {
+        animator.SetBool("isAttacking", false);
+        animator.SetBool("isWalking", false);
+    }
     /*public void Attack()
     {
 

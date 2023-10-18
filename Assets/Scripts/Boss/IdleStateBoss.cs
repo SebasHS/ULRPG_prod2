@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class IdleStateBoss : StateBoss
 {
+    public BossController bossController;
     public IdleStateBoss(BossController controller) : base(controller)
     {
         // Creamos nuestra transicion de Idle -> Follow
@@ -35,7 +36,12 @@ public class IdleStateBoss : StateBoss
         Debug.Log("Estado Idle Start Boss");
         controller.rb.velocity = Vector3.zero;
         controller.animator.SetFloat("Vertical", -1f);
+
+        controller.animator.SetBool("IsWalking", false);
+        controller.animator.SetBool("IsAttacking", false);
     }
+
+    
 
     public override void OnUpdate()
     {

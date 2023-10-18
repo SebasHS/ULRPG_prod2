@@ -141,7 +141,8 @@ public class PlayerMovement : MonoBehaviour
         if (bulletDirection.z != 0)
         {
             bullet.transform.Rotate(new Vector3(0, 0, 90));
-        }    
+        }
+        
         bullet.GetComponent<Rigidbody>().AddForce(bulletDirection * 700f);
 
         // Destruye el proyectil después de un tiempo o cuando colisiona con algo.

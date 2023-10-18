@@ -5,6 +5,8 @@ using UnityEngine;
 public class AttackStateBoss : StateBoss
 {
     private float timer = 0.0f;
+    //public BossController bossController;
+
     public AttackStateBoss(BossController controller) : base(controller)
     {
         // Attack -> Follow
@@ -34,6 +36,7 @@ public class AttackStateBoss : StateBoss
     public override void OnStart()
     {
         Debug.Log("Estado Attack Boss: Start");
+        //bossController.UpdateAttackMode();
     }
 
     public override void OnUpdate()
