@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody)), RequireComponent(typeof(CapsuleCollider))]
@@ -12,24 +13,27 @@ public class BossController : MonoBehaviour
     #endregion
 
     #region Parameters
-    public  Transform Player;
+    public Transform Player;
     public float DistanceToFollow = 7f;
     public float DistanceToAttack = 3f;
     public float Speed = 1f;
     public GameObject prefabRasho;
     public Transform FirePoint;
     public float CoolDownTime = 1.0f;
+    private float timer = 0f;
+    private bool timerReached = false;
     #endregion
 
     #region Readonly Properties
-    public Rigidbody rb {private set; get;}
-    public Animator animator {private set; get;}
+    public Rigidbody rb { private set; get; }
+    public Animator animator { private set; get; }
     #endregion
 
-    
 
-    private void Awake() 
+    public static BossController Instance { get; private set; }
+    private void Awake()
     {
+        Instance = this;
         IdleStateBoss = new IdleStateBoss(this);
         FollowStateBoss = new FollowStateBoss(this);
 
@@ -37,15 +41,15 @@ public class BossController : MonoBehaviour
         animator = GetComponent<Animator>();
 
         // Seteamos el estado inicial
-        currentState = IdleStateBoss;    
+        currentState = IdleStateBoss;
     }
 
-    private void Start() 
+    private void Start()
     {
         currentState.OnStart();
     }
 
-    private void Update() 
+    private void Update()
     {
         foreach (var transition in currentState.Transitions)
         {
@@ -87,6 +91,14 @@ public class BossController : MonoBehaviour
     {
         animator.SetBool("isAttacking", false);
         animator.SetBool("isWalking", false);
+    }
+
+    public void BossDies()
+    {
+        animator.SetBool("IsAttacking", false);
+        animator.SetBool("IsWalking", false);
+        animator.SetBool("Dies", true);
+        Destroy(gameObject);
     }
     /*public void Attack()
     {
